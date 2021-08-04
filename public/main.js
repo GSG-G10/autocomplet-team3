@@ -36,11 +36,19 @@ function getRandomArbitrary(min, max) {
 }
 
 function showResult(response) {
-  const img = document.createElement('img');
-  img.classList = 'image';
-  const randomNumber = getRandomArbitrary(0, response.results.length);
-  img.src = response.results[randomNumber].urls.small;
-  result.appendChild(img);
+  if (response >= 300 && response <= 399) {
+    result.textContent = 'Redirection – Indicates that the client must take some additional action in order to complete their request.';
+  } else if (response >= 400 && response <= 499) {
+    result.textContent = 'Client Error – This category of error status codes points the finger at clients.';
+  } else if (response >= 500 && response <= 599) {
+    result.textContent = 'Server Error – The server takes responsibility for these error status code';
+  } else {
+    const img = document.createElement('img');
+    img.classList = 'image';
+    const randomNumber = getRandomArbitrary(0, response.results.length);
+    img.src = response.results[randomNumber].urls.small;
+    result.appendChild(img);
+  }
 }
 
 const autoComplete = (response) => {
