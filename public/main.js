@@ -21,7 +21,7 @@ function api(url, callback) {
 }
 
 function getRandomArbitrary(min, max) {
-  const randomNum = Math.random() * (max - min) + min
+  const randomNum = Math.random() * (max - min) + min;
   return parseInt(randomNum, 10);
 }
 
@@ -47,4 +47,12 @@ inputValue.addEventListener('keyup', (event) => {
 
 clearBtn.addEventListener('click', () => {
   result.textContent = '';
+});
+
+addListener('.input-search', 'input', (e) => {
+  e.preventDefault();
+  const url = `http://localhost:3030/search&q=${inputValue.value}`;
+  api(url, (res) => {
+    console.log(res);
+  });
 });
