@@ -9,23 +9,17 @@ const searchHandler = (req, res) => {
       res.write('<h1>Error Not Found</h1>');
       res.end();
     } else {
-      let allTheData = '';
-      req.on('data', (chunkOfData) => {
-        allTheData += chunkOfData;
+      const allTheData = req.url.split('q=')[1];
+      const changeData = JSON.parse(data);
+      const arr = [];
+      changeData.filter((searchInput) => {
+        const names = searchInput.name;
+        if (names.includes(allTheData)) {
+          arr.push(names);
+        }
+        return arr;
       });
-
-      req.on('end', () => {
-        const changeData = JSON.parse(data);
-        const arr = [];
-        changeData.filter((searchInput) => {
-          const names = searchInput.name;
-          if (names.includes(allTheData)) {
-            arr.push(names);
-          }
-          return arr;
-        });
-        res.end(JSON.stringify(arr));
-      });
+      res.end(JSON.stringify(arr));
     }
   });
 };
