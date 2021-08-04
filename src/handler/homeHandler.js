@@ -13,4 +13,5 @@ const homeHandler = (req, res) => {
     }
   });
 };
+
 module.exports = homeHandler;

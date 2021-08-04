@@ -1,5 +1,5 @@
 const result = document.querySelector('.reslut');
-let inputValue = document.querySelector('.input-search');
+const inputValue = document.querySelector('.input-search');
 
 function addListener(selector, action, callback) {
   document.querySelector(selector).addEventListener(action, callback);
@@ -9,7 +9,7 @@ function api(url, callback) {
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
-      if (xhr.status) {
+      if (xhr.status === 200) {
         const response = JSON.parse(xhr.responseText);
         callback(response);
       }
@@ -18,12 +18,28 @@ function api(url, callback) {
   xhr.open('GET', url);
   xhr.send();
 }
-function showResult(response) {
-  result.innerHTML = response.results.urls;
+
+function getRandomArbitrary(min, max) {
+  const randomNum = Math.random() * (max - min) + min
+  return parseInt(randomNum, 10);
 }
-addListener('submit', (e) => {
+
+function showResult(response) {
+  const img = document.createElement('img');
+  img.classList = 'image';
+  const randomNumber = getRandomArbitrary(0, 10);
+  img.src = response.results[randomNumber].urls.raw;
+  result.appendChild(img);
+}
+addListener('.myBtn', 'click', (e) => {
   e.preventDefault();
-  inputValue = e.target.querySelector('input').value;
-  const url = `https://api.unsplash.com/search/photos?query=${inputValue}&client_id=qp1xazQhIzra13wFLMNGz3ayhyy-ouNonVyzwcbtnLY`;
+  const url = `https://api.unsplash.com/search/photos?query=${inputValue.value}&client_id=qp1xazQhIzra13wFLMNGz3ayhyy-ouNonVyzwcbtnLY`;
   api(url, showResult);
+});
+
+inputValue.addEventListener('keyup', (event) => {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.querySelector('.myBtn').click();
+  }
 });

@@ -19,5 +19,16 @@
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: space-around;
    }
+
+
+.image{
+    width: 30%;
+    height: 300px;
+    margin-bottom: 1rem;
+}
+
+.myBtn{
+    display: none;
+}
