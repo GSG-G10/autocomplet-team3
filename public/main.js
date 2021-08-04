@@ -105,6 +105,6 @@ clearBtn.addEventListener('click', () => {
 
 addListener('.input-search', 'input', (e) => {
   e.preventDefault();
-  const url = `http://localhost:3030/search&q=${inputValue.value}`;
+  const url = `/search&q=${inputValue.value}`;
   api(url, autoComplete);
 });
