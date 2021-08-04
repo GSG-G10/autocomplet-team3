@@ -1,17 +1,15 @@
 const result = document.querySelector('.reslut');
-let inputValue = document.querySelector('.input-search');
-const saerchBtn = document.querySelector(".myBtn");
+const inputValue = document.querySelector('.input-search');
+
 function addListener(selector, action, callback) {
   document.querySelector(selector).addEventListener(action, callback);
 }
 // General  Function Api
 function api(url, callback) {
-  console.log('in api ')
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
-      console.log(xhr.status)
-      if (xhr.status == 200) {
+      if (xhr.status === 200) {
         const response = JSON.parse(xhr.responseText);
         callback(response);
       }
@@ -20,21 +18,29 @@ function api(url, callback) {
   xhr.open('GET', url);
   xhr.send();
 }
-function showResult(response) {
 
-  console.log(response.results[0].urls.raw)
-  result.innerHTML = response.results[0].urls.raw;
+function getRandomArbitrary(min, max) {
+  const randomNum = Math.random() * (max - min) + min
+  return parseInt(randomNum, 10);
 }
-addListener('.myBtn','click', (e) => {
+
+function showResult(response) {
+  const img = document.createElement('img');
+  img.classList = 'image';
+  const randomNumber = getRandomArbitrary(0, 10);
+  console.log(randomNumber)
+  img.src = response.results[randomNumber].urls.raw;
+  result.appendChild(img);
+}
+addListener('.myBtn', 'click', (e) => {
   e.preventDefault();
   const url = `https://api.unsplash.com/search/photos?query=${inputValue.value}&client_id=qp1xazQhIzra13wFLMNGz3ayhyy-ouNonVyzwcbtnLY`;
   api(url, showResult);
 });
 
-
-inputValue.addEventListener("keyup", function(event) {
+inputValue.addEventListener('keyup', (event) => {
   if (event.keyCode === 13) {
     event.preventDefault();
-    document.querySelector(".myBtn").click();
+    document.querySelector('.myBtn').click();
   }
 });
