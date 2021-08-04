@@ -14,7 +14,6 @@ const searchHandler = (req, res) => {
       const arr = [];
       changeData.filter((searchInput) => {
         const names = searchInput.name;
-
         if (names.includes(allTheData)) {
           arr.push(names);
         }

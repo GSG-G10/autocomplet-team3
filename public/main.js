@@ -1,5 +1,6 @@
 const result = document.querySelector('.reslut');
 const inputValue = document.querySelector('.input-search');
+const clearBtn = document.querySelector('.clearBtn');
 
 function addListener(selector, action, callback) {
   document.querySelector(selector).addEventListener(action, callback);
@@ -42,4 +43,8 @@ inputValue.addEventListener('keyup', (event) => {
     event.preventDefault();
     document.querySelector('.myBtn').click();
   }
+});
+
+clearBtn.addEventListener('click', () => {
+  result.textContent = '';
 });
