@@ -28,7 +28,6 @@ function showResult(response) {
   const img = document.createElement('img');
   img.classList = 'image';
   const randomNumber = getRandomArbitrary(0, 10);
-  console.log(randomNumber)
   img.src = response.results[randomNumber].urls.raw;
   result.appendChild(img);
 }
