@@ -30,7 +30,6 @@ function showResult(response) {
   const img = document.createElement('img');
   img.classList = 'image';
   const randomNumber = getRandomArbitrary(0, response.results.length);
-  console.log(response);
   img.src = response.results[randomNumber].urls.small;
   result.appendChild(img);
 }
@@ -40,7 +39,6 @@ const autoComplete = (response) => {
   for (let index = 0; index < response.length; index += 1) {
     const ele = response[index];
     const div = document.createElement('div');
-    div.textContent = ele;
     const inputWithValue = document.createElement('input');
     inputWithValue.setAttribute('type', 'submit');
     inputWithValue.setAttribute('value', ele);
