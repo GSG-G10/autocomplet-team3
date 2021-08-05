@@ -1,5 +1,5 @@
 const supertest = require('supertest');
-const router = require('./router');
+const router = require('../router');
 
 test('teting the home "/" router', (done) => {
   supertest(router)

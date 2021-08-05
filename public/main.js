@@ -7,7 +7,7 @@ function addListener(selector, action, callback) {
   document.querySelector(selector).addEventListener(action, callback);
 }
 
-function api(url, callback) {
+const api = (url, callback) => {
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
@@ -28,14 +28,14 @@ function api(url, callback) {
   };
   xhr.open('GET', url);
   xhr.send();
-}
+};
 
-function getRandomArbitrary(min, max) {
+const getRandomArbitrary = (min, max) => {
   const randomNum = Math.random() * (max - min) + min;
   return parseInt(randomNum, 10);
-}
+};
 
-function showResult(response) {
+const showResult = (response) => {
   if (response >= 300 && response <= 399) {
     result.textContent = 'Redirection – Indicates that the client must take some additional action in order to complete their request.';
   } else if (response >= 400 && response <= 499) {
@@ -49,7 +49,7 @@ function showResult(response) {
     img.src = response.results[randomNumber].urls.small;
     result.appendChild(img);
   }
-}
+};
 
 const autoComplete = (response) => {
   if (response >= 300 && response <= 399) {
