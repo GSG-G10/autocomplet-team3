@@ -1,3 +1,6 @@
+body{
+  background-color: rgb(37, 37, 37);
+}
 .container{
     display: flex;
     justify-content: center;
@@ -10,6 +13,10 @@
     color: rgba(255, 122, 122, 1);
     font-family: Cursive;
     font-size: 45px;
+}
+.title:hover{
+  color: #d4d4d4;
+
 }
 .input-search {
     width: 70%;
@@ -42,6 +49,11 @@
     border: none;
     border-radius: 25px solid #ddd;
    margin-left: 35%;
+   cursor: pointer;
+}
+.clearBtn:hover{
+  background-color: #ddd;
+  cursor: pointer;
 }
 
 .myBtn{
@@ -76,7 +88,11 @@
   #autoCompleteInput:hover{
     background-color: rgba(255, 122, 122, 1);
 }
-
+.decription-paragraph{
+  font-size: 15px;
+  text-align: center;
+  color: #fff;
+}
 @media (max-width: 1200px) {
   
 }
